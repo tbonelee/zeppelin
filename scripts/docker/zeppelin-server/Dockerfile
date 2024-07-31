@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-ARG ZEPPELIN_DISTRIBUTION_IMAGE=zeppelin-distribution:latest
+ARG ZEPPELIN_DISTRIBUTION_IMAGE=zeppelin-distribution:0.12.0-SNAPSHOT
 FROM $ZEPPELIN_DISTRIBUTION_IMAGE AS zeppelin-distribution
 
 # Prepare all interpreter settings for Zeppelin server

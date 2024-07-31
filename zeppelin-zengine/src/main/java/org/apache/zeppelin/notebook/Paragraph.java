@@ -453,7 +453,7 @@ public class Paragraph extends JobWithProgressPoller<InterpreterResult> implemen
         settings.clear();
       }
 
-      LOGGER.debug("RUN : {}", script);
+      LOGGER.info("RUN paragraph: {}", script);
       try {
         InterpreterContext context = getInterpreterContext();
         InterpreterContext.set(context);

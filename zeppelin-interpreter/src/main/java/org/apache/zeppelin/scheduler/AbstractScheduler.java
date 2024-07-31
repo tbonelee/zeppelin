@@ -136,14 +136,14 @@ public abstract class AbstractScheduler implements Scheduler {
     Object jobResult = runningJob.getReturn();
     synchronized (runningJob) {
       if (runningJob.isAborted()) {
-        LOGGER.debug("Job Aborted, {}, {}", runningJob.getId(), runningJob.getErrorMessage());
+        LOGGER.info("Job Aborted, {}, {}", runningJob.getId(), runningJob.getErrorMessage());
         runningJob.setStatus(Job.Status.ABORT);
       } else if (runningJob.getException() != null || (jobResult instanceof InterpreterResult
           && ((InterpreterResult) jobResult).code() == InterpreterResult.Code.ERROR)) {
-        LOGGER.debug("Job Error, {}, {}", runningJob.getId(), runningJob.getReturn());
+        LOGGER.info("Job Error, {}, {}", runningJob.getId(), runningJob.getReturn());
         runningJob.setStatus(Job.Status.ERROR);
       } else {
-        LOGGER.debug("Job Finished, {}, Result: {}", runningJob.getId(), runningJob.getReturn());
+        LOGGER.info("Job Finished, {}, Result: {}", runningJob.getId(), runningJob.getReturn());
         runningJob.setStatus(Job.Status.FINISHED);
       }
     }

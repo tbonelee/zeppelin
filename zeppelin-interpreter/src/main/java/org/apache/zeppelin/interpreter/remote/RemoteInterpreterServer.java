@@ -198,6 +198,7 @@ public class RemoteInterpreterServer extends Thread
         registerThread.start();
       }
       LOGGER.info("Launching ThriftServer at {}:{}", this.host, this.port);
+      LOGGER.info("Will connect to ZeppelinServer at {}:{}", intpEventServerHost, intpEventServerPort);
       server.serve();
     } catch (TTransportException e) {
       LOGGER.error("Failure in TTransport", e);
@@ -983,6 +984,7 @@ public class RemoteInterpreterServer extends Thread
   @Override
   public String getFormType(String sessionId, String className)
           throws InterpreterRPCException, TException{
+    LOGGER.info("getFormType {} {}", sessionId, className);
     Interpreter intp = getInterpreter(sessionId, className);
     try {
       return intp.getFormType().toString();

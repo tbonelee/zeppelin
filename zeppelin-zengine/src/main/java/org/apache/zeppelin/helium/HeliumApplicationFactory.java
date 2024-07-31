@@ -106,6 +106,7 @@ public class HeliumApplicationFactory implements ApplicationEventListener, NoteE
 
         // run application
         RunApplication runTask = new RunApplication(paragraph, appState.getId());
+        logger.info("Runnning application {} in paragraph {}", appState.getId(), paragraph.getId());
         runTask.run();
       } catch (Exception e) {
         logger.error(e.getMessage(), e);
