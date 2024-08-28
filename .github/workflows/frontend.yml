@@ -1,9 +1,7 @@
 name: frontend
 
-on:
-  push:
-    branches-ignore:
-      - 'test-selenium'
+on: push
+
 
 env:
   # Disable keepAlive and pool
