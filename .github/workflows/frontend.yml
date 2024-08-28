@@ -2,12 +2,14 @@ name: frontend
 
 on:
   push:
-    branches-ignore:
-      - 'dependabot/**'
-  pull_request:
     branches:
-      - master
-      - 'branch-*'
+      - 'test-work'
+#    branches-ignore:
+#      - 'dependabot/**'
+#  pull_request:
+#    branches:
+#      - master
+#      - 'branch-*'
 
 env:
   # Disable keepAlive and pool
