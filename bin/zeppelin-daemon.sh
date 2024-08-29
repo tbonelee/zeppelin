@@ -216,7 +216,7 @@ function start() {
     echo ${pid} > ${ZEPPELIN_PID}
   fi
 
-  wait_zeppelin_is_up_for_ci
+#  wait_zeppelin_is_up_for_ci
   sleep 2
   check_if_process_is_alive
 }
