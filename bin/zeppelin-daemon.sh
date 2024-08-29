@@ -147,19 +147,20 @@ function wait_zeppelin_is_up_for_ci() {
     echo "Waiting for Zeppelin to be up"
     while [[ "${count}" -lt 30 ]]; do
       echo "Attempt ${count}"
-      curl -v localhost:8080 2>&1
+      # check with angular webapp path
       curl -v localhost:8080 2>&1 | grep '200 OK'
-      if [[ $? -ne 0 ]]; then
-        echo "Zeppelin is not up yet - sleeping"
-        sleep 1
-        echo "Zeppelin is not up yet - sleeping over"
-        continue
-      else
-        echo "Zeppelin is up"
+      if [[ $? -eq 0 ]]; then
         break
       fi
-      echo "Zeppelin is not up yet"
-        let "count+=1"
+
+      # check with classic webapp path
+      curl -v localhost:8080/classic 2>&1 | grep '200 OK'
+      if [[ $? -eq 0 ]]; then
+        break
+      fi
+
+      sleep 1
+      let "count+=1"
     done
   fi
 }
