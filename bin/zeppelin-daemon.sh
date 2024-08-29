@@ -155,7 +155,7 @@ function wait_zeppelin_is_up_for_ci() {
       fi
 
       # check with classic webapp path
-      curl -v localhost:8080/classic 2>&1 | grep '200 OK'
+      curl -v localhost:8080/classic/ 2>&1 | grep '200 OK'
       if [[ $? -eq 0 ]]; then
         echo "Zeppelin is up and running at localhost:8080/classic"
         break
