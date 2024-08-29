@@ -1076,11 +1076,13 @@
               <exclude>package-lock.json</exclude>
 
               <!-- bundled from zeppelin-web-angular -->
+              <exclude>**/.eslintrc</exclude>
               <exclude>**/*.json</exclude>
               <exclude>**/browserslist</exclude>
               <exclude>**/.prettierrc</exclude>
               <exclude>**/.prettierignore</exclude>
               <exclude>**/.editorconfig</exclude>
+              <exclude>**/protractor.conf.js</exclude>
               <exclude>**/src/**/*.svg</exclude>
               <exclude>**/.gitkeep</exclude>
 
