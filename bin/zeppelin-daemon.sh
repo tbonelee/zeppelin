@@ -150,15 +150,18 @@ function wait_zeppelin_is_up_for_ci() {
       # check with angular webapp path
       curl -v localhost:8080 2>&1 | grep '200 OK'
       if [[ $? -eq 0 ]]; then
+        echo "Zeppelin is up and running at localhost:8080"
         break
       fi
 
       # check with classic webapp path
       curl -v localhost:8080/classic 2>&1 | grep '200 OK'
       if [[ $? -eq 0 ]]; then
+        echo "Zeppelin is up and running at localhost:8080/classic"
         break
       fi
 
+      echo "Zeppelin is not up yet sleeping for 1 sec"
       sleep 1
       let "count+=1"
     done
