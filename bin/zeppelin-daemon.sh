@@ -147,6 +147,7 @@ function wait_zeppelin_is_up_for_ci() {
     echo "Waiting for Zeppelin to be up"
     while [[ "${count}" -lt 30 ]]; do
       echo "Attempt ${count}"
+      curl -v localhost:8080 2>&1
       curl -v localhost:8080 2>&1 | grep '200 OK'
       if [[ $? -ne 0 ]]; then
         echo "Zeppelin is not up yet - sleeping"
@@ -216,7 +217,7 @@ function start() {
     echo ${pid} > ${ZEPPELIN_PID}
   fi
 
-#  wait_zeppelin_is_up_for_ci
+  wait_zeppelin_is_up_for_ci
   sleep 2
   check_if_process_is_alive
 }
