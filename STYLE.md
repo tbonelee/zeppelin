@@ -4,6 +4,8 @@ This is a quick guide on customizing style for the Zeppelin web interface (zeppe
 
 ### Look and Feel
 app/styles/looknfeel  
+
+
 Overall look and theme of the Zeppelin notebook page can be customized here.
 
 ### Code Syntax Highlighting
