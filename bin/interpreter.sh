@@ -100,7 +100,7 @@ if [ -z "${PORT}" ] || [ -z "${INTERPRETER_DIR}" ]; then
 fi
 
 . "${bin}/common.sh"
-
+ffff
 check_java_version
 
 ZEPPELIN_INTERPRETER_API_JAR=$(find "${ZEPPELIN_HOME}/interpreter" -name 'zeppelin-interpreter-shaded-*.jar')
