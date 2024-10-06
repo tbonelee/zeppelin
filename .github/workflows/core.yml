@@ -62,7 +62,7 @@ jobs:
             ~/conda_pkgs_dir
           key: ${{ runner.os }}-zeppelin-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-            ${{ runner.os }}-zeppelin-
+            ${{ runner.os }}-zeppelin-test
       - name: install application with some interpreter
         run: ./mvnw install -Pbuild-distr -DskipTests -pl zeppelin-server,zeppelin-web,spark-submit,spark/scala-2.12,spark/scala-2.13,markdown,angular,shell -am -Pweb-classic -Phelium-dev -Pexamples ${MAVEN_ARGS}
       - name: install and test plugins
