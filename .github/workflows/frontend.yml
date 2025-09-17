@@ -117,9 +117,6 @@ jobs:
             ${{ runner.os }}-zeppelin-
       - name: Install Zeppelin backend
         run: ./mvnw clean install -DskipTests -am -pl zeppelin-server,zeppelin-web-angular -Pspark-scala-2.12 -Pspark-3.4 ${MAVEN_ARGS}
-      - name: Install Angular dependencies
-        working-directory: zeppelin-web-angular
-        run: npm ci
       - name: Install Playwright browsers
         working-directory: zeppelin-web-angular
         run: npx playwright install --with-deps
