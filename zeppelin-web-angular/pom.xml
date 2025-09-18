@@ -158,7 +158,7 @@
               <skip>${web.e2e.disabled}</skip>
               <target unless="skipTests">
                 <exec executable="./node/npx" spawn="false">
-                  <arg value="playwright@1.53.2 install --with-deps" />
+                  <arg line="playwright@1.53.2 install --with-deps" />
                 </exec>
               </target>
             </configuration>
