@@ -153,6 +153,9 @@
                 </exec>
               </target>
             </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
           </execution>
 
           <execution>
