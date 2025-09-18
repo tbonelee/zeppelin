@@ -107,13 +107,13 @@
           </execution>
 
           <execution>
-            <id>playwright-install-browsers</id>
+            <id>playwright-install</id>
             <goals>
               <goal>npm</goal>
             </goals>
             <phase>pre-integration-test</phase>
             <configuration>
-              <arguments>exec -- npx playwright@1.53.2 install</arguments>
+              <arguments>exec -- npx playwright@1.53.2 install --with-deps</arguments>
             </configuration>
           </execution>
 
