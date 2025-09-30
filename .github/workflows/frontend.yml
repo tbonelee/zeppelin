@@ -103,6 +103,8 @@ jobs:
     defaults:
       run:
         shell: bash -l {0}
+    env:
+      ZEPPELIN_SELENIUM_BROWSER: "edge"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
