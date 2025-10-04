@@ -29,6 +29,9 @@ import org.apache.zeppelin.util.ReflectionUtils;
 import java.io.IOException;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Interface for storing zeppelin configuration.
  *
@@ -39,6 +42,7 @@ import java.util.List;
  *
  */
 public abstract class ConfigStorage {
+  private static final Logger LOGGER = LoggerFactory.getLogger(ConfigStorage.class);
 
   protected static final String STORAGE_HEALTHCHECK_NAME = "ConfigStorage";
 
@@ -47,6 +51,7 @@ public abstract class ConfigStorage {
   public static ConfigStorage createConfigStorage(ZeppelinConfiguration zConf) throws IOException {
     String configStorageClass =
         zConf.getString(ZeppelinConfiguration.ConfVars.ZEPPELIN_CONFIG_STORAGE_CLASS);
+    LOGGER.info("Using ConfigStorage class: {}", configStorageClass);
     return ReflectionUtils.createClazzInstance(configStorageClass,
         new Class[] {ZeppelinConfiguration.class}, new Object[] {zConf});
   }
