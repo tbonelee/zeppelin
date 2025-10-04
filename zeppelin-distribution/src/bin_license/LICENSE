@@ -74,7 +74,7 @@ The following components are provided under Apache License.
     (Apache 2.0) Spatial4J (com.spatial4j:spatial4j:0.4.1 - https://github.com/spatial4j/spatial4j)
     (Apache 2.0) T-Digest (com.tdunning:t-digest:3.0 - https://github.com/tdunning/t-digest)
     (Apache 2.0) Netty (io.netty:netty:3.10.5.Final - http://netty.io/)
-    Apache Lucene via zengine
+    Apache Lucene via zeppelin-server
     (Apache 2.0) Lucene Core (org.apache.lucene:lucene-core:8.7.0 https://github.com/apache/lucene)
     (Apache 2.0) Lucene Common Analyzers (org.apache.lucene:lucene-analyzers-common:8.7.0 - https://github.com/apache/lucene)
     (Apache 2.0) Lucene QueryParsers (org.apache.lucene:lucene-queryparser:8.7.0 https://github.com/apache/lucene)
