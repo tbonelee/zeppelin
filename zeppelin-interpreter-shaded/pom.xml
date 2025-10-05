@@ -122,8 +122,6 @@
                   -->
                 <exclude>org/eclipse/sisu/**</exclude>
               </excludes>
-              <!-- Prevent relocation of string literals in bytecode -->
-              <rawString>true</rawString>
             </relocation>
             <relocation>
               <pattern>com.google</pattern>

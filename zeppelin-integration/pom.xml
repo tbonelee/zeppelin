@@ -70,6 +70,13 @@
     </dependency>
 
     <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>zeppelin-server</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>org.apache.zeppelin</groupId>
       <artifactId>spark-interpreter</artifactId>
       <version>${project.version}</version>
@@ -111,12 +118,6 @@
       <version>${project.version}</version>
       <scope>test</scope>
       <type>war</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.zeppelin</groupId>
-      <artifactId>zeppelin-server</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.zeppelin</groupId>
