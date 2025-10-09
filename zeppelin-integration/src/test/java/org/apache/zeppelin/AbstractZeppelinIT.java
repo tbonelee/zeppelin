@@ -55,11 +55,8 @@ abstract public class AbstractZeppelinIT {
   protected static final long MAX_PARAGRAPH_TIMEOUT_SEC = 120;
 
   protected void authenticationUser(String userName, String password) {
-    pollingWait(
-        By.xpath("//div[contains(@class, 'navbar-collapse')]//li//button[contains(.,'Login')]"),
-        MAX_BROWSER_TIMEOUT_SEC).click();
-
-    ZeppelinITUtils.sleep(1000, false);
+    // Wait for login modal to show up
+    ZeppelinITUtils.sleep(2000, false);
 
     pollingWait(By.xpath("//*[@id='userName']"), MAX_BROWSER_TIMEOUT_SEC).sendKeys(userName);
     pollingWait(By.xpath("//*[@id='password']"), MAX_BROWSER_TIMEOUT_SEC).sendKeys(password);
