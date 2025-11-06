@@ -33,10 +33,6 @@ export class NotebookPage extends BasePage {
     this.paragraphInner = page.locator('.paragraph-inner[nz-row]');
   }
 
-  async getParagraphCount(): Promise<number> {
-    return await this.paragraphContainer.count();
-  }
-
   async getSidebarWidth(): Promise<number> {
     const sidebarElement = await this.sidebarArea.boundingBox();
     return sidebarElement?.width || 0;
