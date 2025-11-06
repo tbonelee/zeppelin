@@ -20,8 +20,6 @@ export class NoteTocPage extends NotebookKeyboardPage {
   readonly tocCloseButton: Locator;
   readonly tocEmptyMessage: Locator;
   readonly tocItems: Locator;
-  readonly codeEditor: Locator;
-  readonly runButton: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -35,12 +33,6 @@ export class NoteTocPage extends NotebookKeyboardPage {
       .first();
     this.tocEmptyMessage = page.getByText('Headings in the output show up here');
     this.tocItems = page.locator('[class*="toc"] li, [class*="heading"]');
-    this.codeEditor = page.locator('textarea, [contenteditable], .monaco-editor textarea').first();
-    this.runButton = page
-      .locator('button')
-      .filter({ hasText: /run|실행|▶/ })
-      .or(page.locator('[title*="run"], [aria-label*="run"]'))
-      .first();
   }
 
   async clickTocToggle(): Promise<void> {
