@@ -50,7 +50,7 @@ export class FolderRenamePageUtil {
     await expect(renameButton).toBeVisible();
   }
 
-  async verifyRenameModalOpens(folderName?: string): Promise<void> {
+  async verifyRenameModalOpens(folderName: string): Promise<void> {
     await this.folderRenamePage.clickRenameMenuItem(folderName);
 
     // Wait for modal to appear with extended timeout

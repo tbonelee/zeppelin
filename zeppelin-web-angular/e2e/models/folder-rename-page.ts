@@ -100,7 +100,7 @@ export class FolderRenamePage extends BasePage {
     await deleteIcon.click();
   }
 
-  async clickRenameMenuItem(folderName?: string): Promise<void> {
+  async clickRenameMenuItem(folderName: string): Promise<void> {
     if (folderName) {
       // Ensure the specific folder is hovered first
       await this.hoverOverFolder(folderName);
