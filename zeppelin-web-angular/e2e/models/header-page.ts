@@ -23,10 +23,8 @@ export class HeaderPage extends BasePage {
   readonly jobMenuItem: Locator;
   readonly userDropdownTrigger: Locator;
   readonly userBadge: Locator;
-  readonly userDropdown: Locator;
   readonly searchInput: Locator;
   readonly themeToggleButton: Locator;
-  readonly connectionStatusBadge: Locator;
 
   readonly userMenuItems: {
     aboutZeppelin: Locator;
@@ -49,10 +47,8 @@ export class HeaderPage extends BasePage {
     this.jobMenuItem = page.getByRole('link', { name: 'Job' });
     this.userDropdownTrigger = page.locator('.header .user .status');
     this.userBadge = page.locator('.header .user nz-badge');
-    this.userDropdown = page.locator('ul[nz-menu]').filter({ has: page.getByText('About Zeppelin') });
     this.searchInput = page.locator('.header .search input[type="text"]');
     this.themeToggleButton = page.locator('zeppelin-theme-toggle button');
-    this.connectionStatusBadge = page.locator('.header .user nz-badge');
 
     this.userMenuItems = {
       aboutZeppelin: page.getByText('About Zeppelin', { exact: true }),
@@ -107,17 +103,6 @@ export class HeaderPage extends BasePage {
 
   async getUsernameText(): Promise<string> {
     return (await this.userBadge.textContent()) || '';
-  }
-
-  async getConnectionStatus(): Promise<string> {
-    const status = await this.connectionStatusBadge.locator('.ant-badge-status-dot').getAttribute('class');
-    if (status?.includes('success')) {
-      return 'success';
-    }
-    if (status?.includes('error')) {
-      return 'error';
-    }
-    return 'unknown';
   }
 
   async searchNote(query: string): Promise<void> {
