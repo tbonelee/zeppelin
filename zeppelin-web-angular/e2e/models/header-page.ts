@@ -105,18 +105,6 @@ export class HeaderPage extends BasePage {
     await this.userMenuItems.configuration.click();
   }
 
-  async clickLogout(): Promise<void> {
-    await this.userMenuItems.logout.click();
-  }
-
-  async clickSwitchToClassicUI(): Promise<void> {
-    await this.userMenuItems.switchToClassicUI.click();
-  }
-
-  async isHeaderVisible(): Promise<boolean> {
-    return this.header.isVisible();
-  }
-
   async getUsernameText(): Promise<string> {
     return (await this.userBadge.textContent()) || '';
   }
@@ -130,18 +118,6 @@ export class HeaderPage extends BasePage {
       return 'error';
     }
     return 'unknown';
-  }
-
-  async isNotebookDropdownVisible(): Promise<boolean> {
-    return this.notebookDropdown.isVisible();
-  }
-
-  async isUserDropdownVisible(): Promise<boolean> {
-    return this.userDropdown.isVisible();
-  }
-
-  async isLogoutMenuItemVisible(): Promise<boolean> {
-    return this.userMenuItems.logout.isVisible();
   }
 
   async searchNote(query: string): Promise<void> {
