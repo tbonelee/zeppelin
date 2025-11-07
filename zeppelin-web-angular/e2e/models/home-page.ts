@@ -162,16 +162,8 @@ export class HomePage extends BasePage {
     await this.zeppelinLogo.click();
   }
 
-  async getCurrentURL(): Promise<string> {
-    return this.page.url();
-  }
-
   getCurrentPath(): string {
     return getCurrentPath(this.page);
-  }
-
-  async getPageTitle(): Promise<string> {
-    return this.page.title();
   }
 
   async getWelcomeHeadingText(): Promise<string> {
@@ -204,46 +196,7 @@ export class HomePage extends BasePage {
     await this.nodeList.filterInput.fill(searchTerm);
   }
 
-  async isRefreshIconSpinning(): Promise<boolean> {
-    const spinAttribute = await this.refreshIcon.getAttribute('nzSpin');
-    return spinAttribute === 'true' || spinAttribute === '';
-  }
-
-  async waitForRefreshToComplete(): Promise<void> {
-    await this.page.waitForFunction(
-      () => {
-        const icon = document.querySelector('a.refresh-note i[nz-icon]');
-        return icon && !icon.hasAttribute('nzSpin');
-      },
-      { timeout: 10000 }
-    );
-  }
-
   async getDocumentationLinkHref(): Promise<string | null> {
     return this.externalLinks.documentation.getAttribute('href');
-  }
-
-  async areExternalLinksVisible(): Promise<boolean> {
-    const links = [
-      this.externalLinks.documentation,
-      this.externalLinks.mailingList,
-      this.externalLinks.issuesTracking,
-      this.externalLinks.github
-    ];
-
-    for (const link of links) {
-      if (!(await link.isVisible())) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  async isWelcomeSectionVisible(): Promise<boolean> {
-    return this.welcomeSection.isVisible();
-  }
-
-  async isMoreInfoGridVisible(): Promise<boolean> {
-    return this.moreInfoGrid.isVisible();
   }
 }
