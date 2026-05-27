@@ -53,3 +53,4 @@ Thumbs.db
 #
 .env
 yarn.lock
+.context/
